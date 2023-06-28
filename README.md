@@ -1,15 +1,16 @@
-# Gravity Forms as a composer dependency
-This step by step guide intends to help adding Gravity Forms WordPress Plugin as a composer dependency.
+# Guide for adding Gravity Forms as a Composer dependency
 
-## Before you start
-This guide is helping adding Gravity Forms version `2.7.9`, the latest GF release on 2023 June 27th.
-Please check on [Gravity Forms changelog](https://docs.gravityforms.com/gravityforms-change-log/) before continuing, and do the proper version changes, if needed.
+Hey there! This guide is here to assist you in seamlessly integrating Gravity Forms WordPress Plugin as a composer dependency.
 
-## Step by step guide
+## Before you dive in
+
+Just a heads up, this guide is specifically designed to aid you in adding Gravity Forms version `2.7.9`, which happens to be the latest release as on 2023 June 27th. Before we get started, it's always a good idea to double-check the Gravity Forms changelog to ensure you're up to date and make any necessary version adjustments.
+
+## Let's get this party started
 
 ### 1) Add the Gravity Forms key into the `.env`
 
-`WP_PLUGIN_GF_KEY` needs to be defined on `.env` file, on the project root directory. A line containing `WP_PLUGIN_GF_KEY=<YOUR-GF-LICENSE-KEY>` will be enough. 
+`WP_PLUGIN_GF_KEY` needs to be defined on `.env` file, on the project root directory. A line containing `WP_PLUGIN_GF_KEY=<YOUR-GF-LICENSE-KEY>` would be enough for that.
 
 To get your Gravity Forms license key you may [login to Gravity Forms](https://www.gravityforms.com/wp-login.php), and check/manage your license. 
 
@@ -23,7 +24,7 @@ echo "WP_PLUGIN_GF_KEY=<YOUR-GF-LICENSE-KEY>" >> .env
 
 ### 2) Registering the Gravity Forms repository
 
-The following block should be added to your `composer.json`:
+The following block should be added to your `composer.json` to registering the Gravity Forms repository
 
 ```json
 {
@@ -44,9 +45,9 @@ The following block should be added to your `composer.json`:
 }
 ```
 
-The following `jq` command _tries_ to do this for you, checking if `repositories` is an object with the type function. If it is, it adds a new repository object as a new field in repositories. If repositories is not an object (presumably an array), it appends the new repository as an item in the repositories array.
+The following `jq` command *attempts* to accomplish this for you by checking if `repositories` is an object with the type function. If it is, it adds a new repository object as a new field in the repositories. In case `repositories` is not an object (possibly an array), it appends the new repository as an item in the repositories array.
 
-If `jq` isn't installed on your system, you can add it on a Debian-based GNU/Linux with `sudo apt-get install jq` or on MacOS with `brew install jq`:
+If `jq` is not installed on your system, you can easily add it on a Debian-based GNU/Linux by using `sudo apt-get install jq` or on macOS with `brew install jq`.
 
 ```bash
 # Add Gravity Forms repository
@@ -91,7 +92,7 @@ jq '
 
 ### 3) Permitting necessary plugins
 
-You'll need to add the `ffraenz/private-composer-installer` and `gotoandplay/gravityforms-composer-installer` plugins to the list of permitted plugins. The commands below will handle this for you:
+You'll need to add the `ffraenz/private-composer-installer` and `gotoandplay/gravityforms-composer-installer` plugins to the list of permitted plugins. The commands below will try to take care of this for you:
 
 ```bash
 # Add config section if it does not exist
@@ -109,8 +110,8 @@ jq '.config["allow-plugins"] += {"ffraenz/private-composer-installer": true, "go
 Use the following command to include Gravity Forms in your project:
 
 ```bash
-# Include Gravity Forms - adding --with-all-dependencies as some dependency upgrade may be necessary
-composer require gravityforms/gravityforms 2.7.9 --with-all-dependencies
+# Include Gravity Forms
+composer require gravityforms/gravityforms 2.7.9
 ```
 
 ### 5) Add the `.env` file to `.deployignore`
@@ -125,10 +126,10 @@ fi
 ```
 
 ## Enjoy the rewards of your efforts
-Hoping it gives you more time for your beloved pursuits, like backing an incredible environmental volunteer project =0)
+I hope it gives you more time for your beloved pursuits, like backing an incredible environmental volunteer project =0)
 [![Buy a fruit tree sapling](https://img.shields.io/badge/Buy%20a%20fruit%20tree%20sapling-support-%23FFDD00.svg?style=flat-square&logo=buy-me-a-coffee&logoColor=white)](https://www.buymeacoffee.com/frutourbano)
 
-Did you get very inspired by the idea of volunteers establishing community orchards, focusing on preserving endangered fruit tree species and empowering underserved communities?
+Did you get very inspired by the idea of volunteers establishing community orchards for feeding, focusing on preserving endangered fruit tree species and empowering underserved communities?
 Kindly consider supporting the Urban Fruit (Fruto Urbano) initiative on Catarse! [![Support on Catarse](https://img.shields.io/badge/Support%20on-Catarse-%23ED6D3D.svg?style=flat-square&logo=catarse&logoColor=white)](https://www.catarse.me/frutourbano)
 
 ## Plus: Automation - Why not give it a whirl?

@@ -190,8 +190,8 @@ jq 'if .config["allow-plugins"] then . else .config += { "allow-plugins": {} } e
 # Add plugins to the allow-plugins list
 jq '.config["allow-plugins"] += {"ffraenz/private-composer-installer": true, "gotoandplay/gravityforms-composer-installer": true}' composer.json > tmp.$$.json && mv tmp.$$.json composer.json
 
-# 4) Include Gravity Forms - adding --with-all-dependencies as some dependency upgrade/downgrade may be necessary
-composer require gravityforms/gravityforms 2.7.9 --with-all-dependencies
+# 4) Include Gravity Forms
+composer require gravityforms/gravityforms 2.7.9
 
 # 5) Add the `env file to .deployignore
 if [ ! -f .deployignore ] || ! grep -Fxq ".env" .deployignore; then
